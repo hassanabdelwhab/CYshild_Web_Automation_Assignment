@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite parallel="false" name="Cyshield_Task">
+    <parameter  name="browserName" value="FireFox"/>
+    <test name="Registration form Test">
+        <classes>
+            <class name="com.cyshild.tests.Register.RegisterFormTest"/>
+        </classes>
+    </test>
+</suite>
+
