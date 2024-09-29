@@ -27,38 +27,19 @@ public class TestBase {
     public SoftAssert softAssert;
     NgWebDriver ngDriver;
 
-////    @Parameters({"browser"})
-//    @BeforeTest(alwaysRun = true)
-//    public void testSetup() throws Exception {
-//        try {
-//            Log.info("Initializing WebDriver for environment: ");
-////            WebDriverManager.chromedriver().setup();
-//            driver = new ChromeDriver(setChromeOption());
-//            jse = (JavascriptExecutor) driver;
-//            ngDriver = new NgWebDriver(jse).withRootSelector("\"app-root\"");
-//            driver.get("https://testing.todorvachev.com/");
-//            driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-//            Log.info("Selenium WebDriver was initialized successfully ");
-//        } catch (Exception e) {
-//            Log.error("Error occurred while initializing selenium WebDriver for environment: ");
-//            driver.quit();
-//            System.exit(1);
-//        }
-//    }
-    //////////////////////////////////////
-@Parameters({"browser"})
+@Parameters({"browserName"})
 @BeforeTest(alwaysRun = true)
 public void testSetup(@Optional("chrome")String browserName) throws Exception {
     try {
         Log.info("Initializing WebDriver for environment: ");
 //GoogleChrome
         if (browserName.equalsIgnoreCase("chrome")){
-//            WebDriverManager.chromedriver().setup();
+            WebDriverManager.chromedriver().setup();
             driver = new ChromeDriver(setChromeOption());
         }
 //FireFoxBrowser
         else if (browserName.equalsIgnoreCase("FireFox")){
-//            WebDriverManager.firefoxdriver().setup();
+            WebDriverManager.firefoxdriver().setup();
             driver = new FirefoxDriver(setFirefoxOptions());
         }
 
@@ -87,7 +68,7 @@ public void testSetup(@Optional("chrome")String browserName) throws Exception {
         options.setCapability(CapabilityType.ACCEPT_INSECURE_CERTS, true);
         options.setExperimentalOption("excludeSwitches", new String[]{"enable-automation"});
         options.setExperimentalOption("useAutomationExtension", false);
-        options.addArguments("--headless=new");
+//        options.addArguments("--headless=new");
         options.addArguments("--no-sandbox");
         options.addArguments("--disable-gpu");
         options.addArguments("--start-maximized");
