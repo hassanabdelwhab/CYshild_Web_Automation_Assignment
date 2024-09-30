@@ -23,7 +23,7 @@ public class RegisterFormTest extends TestBase {
         registerPage.scrollToForm();
     }
 
-    @Test
+    @Test(priority = 0)
     public void validateIfAllElementsAreVisible() throws Exception {
 
         try {
@@ -34,7 +34,7 @@ public class RegisterFormTest extends TestBase {
         }
     }
 
-    @Test
+    @Test(priority = 2)
     public void validateRegistrationFormWithInValidID(){
         try {
             registerPage.enterUserID(GeneralConstants.INVALID_ID);
@@ -48,7 +48,7 @@ public class RegisterFormTest extends TestBase {
         }
     }
 
-    @Test
+    @Test(priority = 1)
     public void validateRegistrationFormWithValidData() throws Exception {
         try {
             registerPage.enterDataRegister(GeneralConstants.VALID_ID,GeneralConstants.VALID_PASSWORD,

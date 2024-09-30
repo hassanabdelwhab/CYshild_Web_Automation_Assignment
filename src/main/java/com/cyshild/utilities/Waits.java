@@ -1,10 +1,7 @@
 package com.cyshild.utilities;
 
 import org.openqa.selenium.*;
-import org.openqa.selenium.support.ui.ExpectedCondition;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.FluentWait;
-import org.openqa.selenium.support.ui.Wait;
+import org.openqa.selenium.support.ui.*;
 
 import java.time.Duration;
 
@@ -80,6 +77,7 @@ public class Waits {
         return wait.until(ExpectedConditions.elementToBeClickable(element));
 
     }
+
     public void waitForVisibilityOfList(By locator) {
         Wait<WebDriver> wait = new FluentWait<>(driver)
                 .withTimeout(waitTime)

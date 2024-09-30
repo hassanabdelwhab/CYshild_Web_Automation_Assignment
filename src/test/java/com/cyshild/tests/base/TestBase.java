@@ -1,6 +1,7 @@
 package com.cyshild.tests.base;
 
 
+import com.cyshild.constant.GeneralConstants;
 import com.cyshild.utilities.Log;
 import com.paulhammant.ngwebdriver.NgWebDriver;
 import io.github.bonigarcia.wdm.WebDriverManager;
@@ -34,12 +35,13 @@ public void testSetup(@Optional("chrome")String browserName) throws Exception {
         Log.info("Initializing WebDriver for environment: ");
 //GoogleChrome
         if (browserName.equalsIgnoreCase("chrome")){
-            WebDriverManager.chromedriver().setup();
+//            WebDriverManager.chromedriver().setup();
             driver = new ChromeDriver(setChromeOption());
         }
 //FireFoxBrowser
         else if (browserName.equalsIgnoreCase("FireFox")){
-            WebDriverManager.firefoxdriver().setup();
+//            WebDriverManager.firefoxdriver().setup();
+            System.setProperty("webdriver.chrome.driver", System.getProperty(GeneralConstants.USER_DIR) + "\\src\\test\\resources\\drivers\\geckodriver.exe");
             driver = new FirefoxDriver(setFirefoxOptions());
         }
 
@@ -51,7 +53,7 @@ public void testSetup(@Optional("chrome")String browserName) throws Exception {
 
     } catch (Exception e) {
         Log.error("Error occurred while initializing selenium WebDriver for environment: ");
-        driver.quit();
+       driver.quit();
         System.exit(1);
     }
 }
@@ -86,22 +88,6 @@ public void testSetup(@Optional("chrome")String browserName) throws Exception {
 
     private FirefoxOptions setFirefoxOptions() {
         FirefoxOptions options = new FirefoxOptions();
-
-        // Set Firefox preferences
-        options.addPreference("browser.download.folderList", 2); // Set download directory to Downloads folder
-        options.addPreference("browser.download.manager.showWhenStarting", false); // Hide download manager
-        options.addPreference("browser.download.panel.shown", false); // Hide download panel
-        options.addPreference("browser.download.useDownloadDir", true); // Use default download directory
-        options.addPreference("browser.helperApps.alwaysAsk.force", false); // Disable confirmation for downloads
-        options.addPreference("browser.helperApps.defaultHandler.download", "application/octet-stream"); // Set default handler for downloads
-        options.addPreference("browser.helperApps.neverAsk.saveToDisk", "application/octet-stream,application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,application/zip");
-        // Disable confirmation for specific file types
-
-        // Set Firefox capabilities
-        options.setCapability("marionette", true); // Enable Marionette
-        options.setCapability("acceptInsecureCerts", true);
-        options.setCapability("unhandledPromptBehaviour", "accept");
-
         // Set Firefox arguments
 //        options.addArguments("--headless");
         options.addArguments("--disable-gpu");

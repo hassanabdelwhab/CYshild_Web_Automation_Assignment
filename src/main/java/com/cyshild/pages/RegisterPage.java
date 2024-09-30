@@ -91,7 +91,7 @@ public class RegisterPage extends PageBase {
         Alert alert = driver.switchTo().alert();
         alert.accept();
     }
-    public String getCurrentURL(){
+    public String getCurrentURL() throws InterruptedException {
         return driver.getCurrentUrl();
     }
 
